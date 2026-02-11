@@ -11,24 +11,25 @@ title: Home
 
 ## 🎯 Latest Edges (Updated Hourly)
 
-**3,142 opportunities identified** from 2,000 markets analyzed
+**887 opportunities identified** from 1,239 active markets analyzed
 
 ### Edge Type Breakdown:
-- **Cross-Market Arbitrage:** 3,073 edges (97.8%)
-- **Liquidity Imbalance:** 60 edges (1.9%)
-- **Favorite Fade:** 9 edges (0.3%)
+- **Lottery Fade:** 755 edges (85.1%)
+- **Liquidity Imbalance:** 103 edges (11.6%)
+- **Favorite Fade:** 29 edges (3.3%)
+- **Pure Arbitrage:** 0 edges (0.0%)
 
 ---
 
 ## 🔥 Top 5 High-Conviction Edges
 
-| Priority | Market | Action | Entry | Fair Value | Edge % | EV | Kelly % | Liq Score |
-|----------|--------|--------|-------|------------|--------|-----|---------|--------|
-| ⚡ HIGH | Kraken IPO by March 31, 2026? | ✅ BET YES | $0.145 | $0.290 | 100% | $100 | 25% | C (5/10) |
-| ⚡ HIGH | Trump deport <250K? | ✅ BET YES | $0.038 | $0.077 | 100% | $100 | 25% | C (5/10) |
-| ⚡ HIGH | Trump deport 500K-750K? | ✅ BET YES | $0.028 | $0.055 | 100% | $100 | 25% | C (5/10) |
-| ⚡ HIGH | China x India clash? | ✅ BET YES | $0.135 | $0.270 | 100% | $100 | 25% | C (5/10) |
-| ⚡ HIGH | DOGE cut >$250B? | ✅ BET YES | $0.011 | $0.021 | 100% | $100 | 25% | C (5/10) |
+| Priority | Market | Action | Entry | Edge Type |
+|----------|--------|--------|-------|-----------|
+| ⚡ HIGH | Trump deport 250K-500K? | ✅ BET YES | $0.904 | 505x liq imbalance |
+| ⚡ HIGH | Harvey Weinstein 10-20yr? | ❌ BET NO | $0.895 | 477x liq imbalance |
+| ⚡ HIGH | SCOTUS sports contract case? | ✅ BET YES | $0.335 | 276x liq imbalance |
+| ⚡ HIGH | Kraken IPO by March 31? | ✅ BET YES | $0.145 | 199x liq imbalance |
+| ⚡ HIGH | Caroline van der Plas PM? | ❌ BET NO | $1.000 | 194x liq imbalance |
 
 📊 **[View Full Edge List (Live Google Sheet)](https://docs.google.com/spreadsheets/d/1oFnr0HY5jQVzpZzAGwq0EVuzkSR5HJxn0bow_u_pFg8/edit#gid=559016515)**
 
@@ -36,11 +37,12 @@ title: Home
 
 ## 📈 System Stats
 
-- **Markets Analyzed:** 2,000 (sampled from 7,323 total)
-- **Edges Found:** 3,142 opportunities
+- **Total Markets:** 7,323 markets in Polymarket
+- **Markets Analyzed:** 1,239 active markets
+- **Edges Found:** 887 opportunities
 - **Update Frequency:** Every hour (top of the hour)
-- **Last Updated:** 2026-02-11 03:00 UTC
-- **Next Scan:** 2026-02-11 04:00 UTC
+- **Last Updated:** 2026-02-11 04:00 UTC
+- **Next Scan:** 2026-02-11 05:00 UTC
 
 ---
 
@@ -76,7 +78,7 @@ Heavy favorites (>$0.95) may underprice tail risk
 
 ---
 
-### 5. 🔍 Stale Pricing
+### 5. 📉 Stale Pricing
 Low recent volume (<$1K) but high liquidity (>$5K) → Outdated prices
 
 **Priority:** LOW - Research if recent developments occurred
@@ -99,57 +101,58 @@ Similar questions priced differently across markets
 - **MEDIUM (10-20%):** Bet at 50% Kelly, do quick research
 - **LOW (<10%):** Watch only, research if you have info edge
 
-### Risk Management:
-1. Never exceed Kelly % (already aggressive)
-2. Reduce size for Liq Score <B
-3. Diversify across edge types
-4. Execute pure arbs first
+### Liquidity Scores:
+- **A (9-10):** Excellent - Trade full size
+- **B (7-8):** Good - Trade 75% size
+- **C (5-6):** Fair - Trade 50% size
+- **D (3-4):** Poor - Trade 25% or skip
+- **F (1-2):** Very Poor - Avoid
 
 ---
 
-## 🛠️ Technical Implementation
+## 📊 Understanding the Data
 
-**Detection Logic:**
-```python
-# Pure Arbitrage
-if yes_price + no_price < 0.98:
-    edge_type = "PURE ARB"
+### Key Metrics:
+- **Edge %:** How much better than fair value (higher = better)
+- **EV ($):** Expected profit per $100 bet
+- **Kelly %:** Recommended position size (% of bankroll)
+- **Liq Score:** Can you actually trade this? (1-10 scale)
 
-# Liquidity Imbalance
-if volume / liquidity > 20:
-    edge_type = "LIQ IMBALANCE"
-    
-# Cross-Market Arbitrage  
-if question_similarity > 0.60 and price_contradiction:
-    edge_type = "CROSS-MARKET ARB"
-```
-
----
-
-## 📖 Version History
-
-**v3.0 (2026-02-11):**
-- Added 6 detection strategies
-- Multi-edge reasoning system
-- Priority-based sorting
-- Results: 3,142 edges (3,073 cross-market, 60 liquidity, 9 favorite)
-
-**v2.0 (2026-02-11):**
-- Added EV, Kelly Criterion, Liquidity Score
-- Basic arbitrage detection
-
-**v1.0 (2026-02-10):**
-- Initial edge detection
+### Edge Types Explained:
+- **LIQ IMBALANCE:** High volume/liquidity ratio → Market catching up to new info
+- **LOTTERY FADE:** Extreme longshots overpriced → Bet against them
+- **FAVORITE FADE:** Heavy favorites underpricing tail risk → Small NO bet
+- **PURE ARB:** YES + NO < $1.00 → Free money (rare)
+- **CROSS-MARKET ARB:** Same event priced differently → Exploit gap
+- **STALE PRICE:** Low recent volume → May not reflect news
 
 ---
 
-## 🔄 Automation
+## 🔗 Resources
 
-**Trigger:** Runs every hour (top of the hour)  
-**Platform:** Nebula workflow automation  
-**Updates:** Google Sheet + GitHub Pages automatically
+- **[Live Google Sheet - Full Edge List](https://docs.google.com/spreadsheets/d/1oFnr0HY5jQVzpZzAGwq0EVuzkSR5HJxn0bow_u_pFg8/edit#gid=559016515)**
+- **[GitHub Repository](https://github.com/dutchiono/polymarket-edge-detector)**
+- **[Polymarket Platform](https://polymarket.com)**
 
 ---
 
-**Repository:** [github.com/dutchiono/polymarket-edge-detector](https://github.com/dutchiono/polymarket-edge-detector)  
-**Live Data:** [Google Sheet →](https://docs.google.com/spreadsheets/d/1oFnr0HY5jQVzpZzAGwq0EVuzkSR5HJxn0bow_u_pFg8/edit#gid=559016515)
+## 📝 Methodology
+
+- **Data Source:** Polymarket Gamma API
+- **Update Schedule:** Every hour at :00
+- **Sampling:** 1,239 active markets (from 7,323 total)
+- **Fair Value:** Cross-market analysis + liquidity flows
+- **Kelly Sizing:** Conservative (25% max) for model uncertainty
+- **Liquidity Scoring:** Depth + spread + volume analysis
+
+---
+
+## ⚠️ Disclaimer
+
+Educational/informational purposes only. Not financial advice. Markets can remain irrational longer than you can remain solvent. Always do your own research. Past performance does not guarantee future results.
+
+---
+
+**Built with:** Python • Google Sheets API • Polymarket Gamma API • Nebula AI  
+**Version:** 3.0 (Multi-Strategy Detection)  
+**Status:** Live (Hourly Updates)
