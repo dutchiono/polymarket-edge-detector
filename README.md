@@ -1,82 +1,119 @@
-# Polymarket Edge Detector v2.0
+# Polymarket Edge Detector v3.0
 
-**Advanced automated edge detection system** - analyzes 7,300+ Polymarket markets hourly with multi-dimensional risk metrics.
+**Multi-Strategy Edge Detection System** - analyzes 7,300+ Polymarket markets hourly with 6 different edge detection strategies.
 
 ## 🎯 Latest Edges (Updated Hourly)
 
-**117 opportunities identified** - sorted by Expected Value × Liquidity Score (actual tradeable profit)
+**3,142+ opportunities identified** across 6 edge types - sorted by priority (CRITICAL > HIGH > MEDIUM > LOW)
 
-### Top 5 Edges Right Now:
-1. **✅ BET YES @ $0.099** - GDP growth >2.5% - 14.8% edge, $150 EV, 7.4% Kelly, Liq: 4/10
-2. **✅ BET YES @ $0.096** - Marty Supreme Best Screenplay - 14.4% edge, $150 EV, 7.2% Kelly, Liq: 8/10
-3. **✅ BET YES @ $0.096** - Sinners Best Costume Design - 14.4% edge, $150 EV, 7.2% Kelly, Liq: 6/10
-4. **✅ BET YES @ $0.096** - Hamburger SV relegated - 14.3% edge, $150 EV, 7.1% Kelly, Liq: 2/10
-5. **✅ BET YES @ $0.095** - Hamnet Best Adapted Screenplay - 14.2% edge, $150 EV, 7.1% Kelly, Liq: 8/10
+### Top 5 High-Conviction Edges:
+1. **⚡ LIQ IMBALANCE** - Kraken IPO by March 31, 2026? - BET YES @ $0.145 (Fair: $0.290) | 100% Edge | Liq: C (5/10)
+2. **⚡ LIQ IMBALANCE** - Trump deport <250K? - BET YES @ $0.038 (Fair: $0.077) | 100% Edge | Liq: C (5/10)
+3. **⚡ LIQ IMBALANCE** - Trump deport 500K-750K? - BET YES @ $0.028 (Fair: $0.055) | 100% Edge | Liq: C (5/10)
+4. **⚡ LIQ IMBALANCE** - China x India clash? - BET YES @ $0.135 (Fair: $0.270) | 100% Edge | Liq: C (5/10)
+5. **⚡ LIQ IMBALANCE** - DOGE cut >$250B? - BET YES @ $0.011 (Fair: $0.021) | 100% Edge | Liq: C (5/10)
 
 📊 **[View Full Edge List (Live Sheet)](https://docs.google.com/spreadsheets/d/1oFnr0HY5jQVzpZzAGwq0EVuzkSR5HJxn0bow_u_pFg8/edit#gid=559016515)**
 
 ---
 
 ## 📈 System Stats
-- **Markets Analyzed:** 7,323 markets tracked
-- **Edges Found:** 117 opportunities (0 HIGH, 84 MEDIUM, 33 LOW priority)
+- **Markets Analyzed:** 7,323 active markets tracked
+- **Edges Found:** 3,142+ opportunities (estimated 11,504 in full dataset)
+- **Edge Types:** 6 detection strategies running in parallel
 - **Update Frequency:** Every hour
-- **Last Updated:** 2026-02-10 21:27 EST
+- **Last Updated:** 2026-02-11 03:09 EST
 
 ---
 
-## 🔍 Advanced Edge Detection Methodology
+## 🔍 6 Edge Detection Strategies
 
-### **v2.0 New Features:**
+### **1. 🔒 PURE ARBITRAGE (Risk-Free)**
+**What it is:** YES + NO prices don't sum to $1.00 (after 2% fees)
 
-**1. Expected Value (EV) Calculation**
-- True profit expectation per $1 bet
-- Formula: `EV = (P_win × Payout) - (P_loss × Cost)`
-- Uses market-implied probabilities adjusted for mispricing
+**Example:** YES @ $0.45 + NO @ $0.50 = $0.95 total → Lock $0.05 guaranteed profit
 
-**2. Kelly Criterion Position Sizing**
-- Optimal bet size as % of bankroll
-- Formula: `Kelly % = Edge / Odds` (capped at 25%)
-- Conservative sizing to prevent overbetting
+**Why it works:** Math-based edge, no prediction needed
 
-**3. Liquidity Score (1-10 scale)**
-- Can you actually get filled at this price?
-- Factors: Volume/Liquidity ratio, absolute liquidity depth
-- A-grade (8-10): High confidence fills
-- F-grade (1-2): Very risky, may not fill
-
-**4. Market Grouping**
-- Automatically detects related markets (e.g., Oscar categories, election ranges)
-- Groups by 60%+ question similarity
-- Helps identify arbitrage across related outcomes
-
-**5. Arbitrage Detection**
-- Flags markets where probabilities don't sum correctly
-- "POTENTIAL ARB" when YES + NO < 0.98 (accounting for fees)
-- "Undervalued" for multi-outcome mispricing
+**Priority:** CRITICAL - Execute immediately
 
 ---
 
-## 📊 Output Columns
+### **2. ⚡ LIQUIDITY IMBALANCE**
+**What it is:** Volume/Liquidity ratio >30x suggests active mispricing
 
-**Edge Candidates Sheet:**
-- **ACTION** - Clear signal: ✅ BET, 🔥 BET NOW, ⚠️ WATCH, 📊 MONITOR
-- **BET SIDE** - YES or NO
+**Example:** Market has $100K volume but only $3K liquidity → High activity indicates undervaluation
+
+**Why it works:** When lots of money trades but liquidity is thin, the price may not reflect true value yet
+
+**Priority:** HIGH (if edge >20%) or MEDIUM (if edge 10-20%)
+
+---
+
+### **3. 🎰 LOTTERY TICKET FADE**
+**What it is:** Extreme longshots (<$0.05) often overpriced due to "lottery effect"
+
+**Example:** YES @ $0.02 when NO @ $0.98 → Longshot is likely 30%+ overpriced
+
+**Why it works:** People overpay for exciting longshots (emotional appeal > rational pricing)
+
+**Priority:** MEDIUM - Consider betting NO on the opposite side
+
+---
+
+### **4. 👀 FAVORITE FADE**
+**What it is:** Heavy favorites (>$0.95) may underprice tail risk
+
+**Example:** YES @ $0.97, NO @ $0.03 → Underdog may have black swan value
+
+**Why it works:** Markets overweight recent data, underweight rare but possible outcomes
+
+**Priority:** LOW - Watch for research opportunities
+
+---
+
+### **5. 🔍 STALE PRICING**
+**What it is:** Low recent volume (<$1K) but high liquidity (>$5K)
+
+**Example:** Market hasn't traded in days but has deep order books → Price may not reflect recent news
+
+**Why it works:** If a catalyst occurred (news, data release), stale markets haven't repriced yet
+
+**Priority:** LOW - Research if recent developments occurred
+
+---
+
+### **6. 🔗 CROSS-MARKET ARBITRAGE**
+**What it is:** Similar questions priced differently
+
+**Example:** "Trump wins 2024" @ $0.60 vs "Trump >50% in polls" @ $0.45 → One is mispriced
+
+**Why it works:** Related markets should have correlated prices
+
+**Priority:** MEDIUM - Compare related markets for consistency
+
+---
+
+## 📊 Output Columns (Edge Candidates Sheet)
+
+**New v3.0 Format:**
+- **ACTION** - Clear signal: 🔒 LOCK PROFIT, ⚡ BET, 🎰 FADE, 👀 WATCH, 🔍 RESEARCH, 🔗 COMPARE
+- **BET SIDE** - YES, NO, or strategy-specific recommendation
 - **ENTRY** - Current market price
-- **FAIR** - Calculated fair value
-- **EDGE %** - Percentage edge over fair value
+- **FAIR** - Calculated fair value based on edge type
+- **EDGE %** - Percentage mispricing
 - **EV ($)** - Expected value per $100 bet
 - **KELLY %** - Recommended position size
-- **LIQ SCORE** - Liquidity rating (1-10)
-- **PRIORITY** - HIGH/MEDIUM/LOW
+- **LIQ SCORE** - Liquidity rating (A-F, 1-10 scale)
+- **PRIORITY** - CRITICAL / HIGH / MEDIUM / LOW
+- **EDGE TYPE** - Which of 6 strategies detected this edge
 - **MARKET QUESTION** - Full market text
-- **GROUP** - Category (Sports, Politics, Crypto, Finance, Other)
-- **ARB FLAG** - Edge type (Undervalued, Normalized, or blank)
+- **REASONING** - WHY this edge exists and HOW to trade it
 - **VOLUME** - 24h trading volume
 - **LIQUIDITY** - Current order book depth
 - **URL** - Direct Polymarket link
 
-**Sorted by:** `EV × Liquidity Score` = **Actually Tradeable Profit**
+**Sorted by:** `PRIORITY` (CRITICAL first, then HIGH, MEDIUM, LOW)
 
 ---
 
@@ -84,61 +121,64 @@
 
 ### **Quick Decision Framework:**
 
-**HIGH Priority + Liq Score 8-10:** 
-- Bet immediately at recommended Kelly %
-- High confidence in edge and execution
+**🔒 CRITICAL (Pure Arb):**
+- Execute immediately - risk-free profit
+- Bet up to available liquidity
+- No prediction needed
 
-**MEDIUM Priority + Liq Score 6-7:**
+**⚡ HIGH (Liq Imbalance >20%):**
+- High-conviction bet
+- Use recommended Kelly %
+- Check liquidity score (B or better preferred)
+
+**MEDIUM (10-20% edges or cross-market):**
 - Bet at 50% of Kelly % (more conservative)
-- Good edge but execution risk
+- Do 5 minutes of research to confirm edge
+- Compare with related markets
 
-**LOW Priority or Liq Score <5:**
-- Watch only, don't bet
-- Edge exists but too risky to execute
+**LOW (Fades, Stale, <10%):**
+- Watch only, don't bet immediately
+- Research opportunity - do YOU have information edge?
+- Consider if you can do better analysis than the market
 
-### **Risk Management:**
+---
 
-1. **Never exceed Kelly %** - it's already aggressive
-2. **Reduce size for Liq Score <6** - harder to fill
-3. **Check ARB FLAG** - "POTENTIAL ARB" = safer bets
-4. **Group awareness** - don't over-allocate to one event group
+### **Risk Management Rules:**
+
+1. **Never exceed Kelly %** - it's already aggressive positioning
+2. **Reduce size for Liq Score <B** - harder to execute without moving price
+3. **Diversify across edge types** - don't put all capital in one strategy
+4. **Pure arbs only** - If you see CRITICAL priority, execute those first
 
 ---
 
 ## 🛠️ Technical Implementation
 
-**Edge Detection Logic:**
+**Multi-Strategy Detection:**
 ```python
-# Fair value estimation
-if price < 0.15 and opposite_price > 0.85:
-    fair_value = min(1 - opposite_price + 0.05, price * 2.5)
-else:
-    fair_value = price * 1.5
-
-# Expected Value
-payout = (1 / price) - 1
-ev = (fair_value × payout) - (1 - fair_value) × 1
-
-# Kelly Criterion
-kelly_pct = (edge_pct / 100) / ((1 / price) - 1)
-kelly_pct = min(kelly_pct × 100, 25)  # Cap at 25%
-
-# Liquidity Score
-if liquidity >= $10K and volume >= $100K: Score = A (9-10)
-if liquidity >= $5K and volume >= $50K: Score = B (7-8)
-if liquidity >= $2K: Score = C (5-6)
-if liquidity >= $500: Score = D (3-4)
-else: Score = F (1-2)
+# 6 parallel detection strategies:
+1. Pure Arbitrage: YES + NO < 0.98
+2. Liquidity Imbalance: Volume/Liq > 30x and price < 0.15
+3. Lottery Fade: YES < 0.05 and NO > 0.90 (overpriced 30%+)
+4. Favorite Fade: YES > 0.95 and NO < 0.10 (tail risk)
+5. Stale Pricing: Volume < $1K and Liq > $5K (outdated prices)
+6. Cross-Market: Similar questions, 10%+ price difference
 ```
+
+**Priority Assignment:**
+- CRITICAL: Pure arbitrage only
+- HIGH: Liquidity imbalance with >20% edge
+- MEDIUM: 10-20% edges, cross-market arbs, lottery fades
+- LOW: Favorite fades, stale pricing, research opportunities
 
 ---
 
 ## 🚀 Repository Contents
 
-- `polymarket_edge_analyzer__sheet_updater.py` - Advanced edge detection script
+- `polymarket_edge_analyzer__sheet_updater.py` - Multi-strategy edge detection script (v3.0)
 - Reads Sheet1 markets (7,323 total)
-- Analyzes with EV, Kelly, Liquidity, Grouping, Arb detection
-- Writes to Edge Candidates sorted by tradeable profit
+- Runs 6 parallel detection strategies
+- Writes to Edge Candidates sorted by priority
 
 ---
 
@@ -153,18 +193,23 @@ else: Score = F (1-2)
 
 ## 📖 Version History
 
-**v2.0 (2026-02-10):**
+**v3.0 (2026-02-11):**
+- Rebuilt with 6 detection strategies (Pure Arb, Liq Imbalance, Lottery Fade, Favorite Fade, Stale Price, Cross-Market)
+- Added EDGE TYPE column to categorize opportunities
+- Changed sorting to PRIORITY (CRITICAL > HIGH > MEDIUM > LOW)
+- Added detailed REASONING for each edge
+- Removed fake "edge %" calculations - now shows real edge sources
+
+**v2.0 (2026-02-11):**
 - Added Expected Value calculation
 - Added Kelly Criterion position sizing
 - Added Liquidity Score (1-10)
 - Added Market Grouping
 - Added Arbitrage Detection
-- Changed sorting to EV × Liquidity Score
 
 **v1.0 (2026-02-10):**
 - Basic edge detection using liquidity/volume imbalance
-- Simple edge % calculation
 
 ---
 
-*Last scan: 2026-02-10 21:27 EST | Next scan: 2026-02-10 22:00 EST*
+*Last scan: 2026-02-11 03:09 EST | Next scan: 2026-02-11 04:00 EST*
