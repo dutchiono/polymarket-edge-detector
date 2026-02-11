@@ -1,0 +1,7 @@
+title: Polymarket Edge Detector
+description: Multi-strategy edge detection system analyzing 7,300+ markets hourly
+theme: minima
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
