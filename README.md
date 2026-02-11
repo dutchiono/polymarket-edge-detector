@@ -7,9 +7,9 @@
 **86 opportunities identified** - sorted by edge % (highest profit potential first)
 
 ### Top 3 Edges Right Now:
-1. **BET NO @ $0.096** - 150% edge - Trump deportation 250K-500K range
-2. **BET YES @ $0.028** - 150% edge - Trump deportation 500K-750K range  
-3. **BET YES @ $0.015** - 150% edge - Trump deportation 750K-1M range
+1. **BET NO @ $0.096** - 150% edge - Trump deportations 250K-500K ($3.3M volume)
+2. **BET YES @ $0.028** - 150% edge - Trump deportations 500K-750K ($489K volume)
+3. **BET YES @ $0.015** - 150% edge - Trump deportations 750K-1M ($477K volume)
 
 📊 **[View Full Edge List (Live Sheet)](https://docs.google.com/spreadsheets/d/1oFnr0HY5jQVzpZzAGwq0EVuzkSR5HJxn0bow_u_pFg8/edit#gid=559016515)**
 
@@ -20,7 +20,7 @@
 - **Total Market Pool:** 7,324 markets tracked
 - **Edge Threshold:** 8%+ minimum
 - **Update Frequency:** Every hour
-- **Last Updated:** 2026-02-11 01:50 EST
+- **Last Updated:** 2026-02-11 02:00 EST
 
 ---
 
@@ -81,4 +81,4 @@ Edge % = ((Fair Value / Market Price) - 1) × 100
 
 ---
 
-*Last scan: 2026-02-11 01:50 EST | Next scan: 2026-02-11 02:00 EST*
+*Last scan: 2026-02-11 02:00 EST | Next scan: 2026-02-11 03:00 EST*
